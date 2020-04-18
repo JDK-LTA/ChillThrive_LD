@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlantState
+{
+    HEALTHY,
+    DROWNING,
+    DRY,
+    CHOKING,
+    FROZEN
+}
 public class SeedStateManager : MonoBehaviour
 {
     public static SeedStateManager Instance;
@@ -10,6 +18,10 @@ public class SeedStateManager : MonoBehaviour
         Instance = this;
     }
 
+    PlantState plantState = PlantState.HEALTHY;
+    PlantState plantSecondaryState = PlantState.HEALTHY;
+
+    #region Variables
     public int level = 1;
     public GameObject seed, sun;
     SeedStats stats;
@@ -22,6 +34,7 @@ public class SeedStateManager : MonoBehaviour
 
     public float rainThreshold = 0.7f;
     private bool isRaining, isStorming, isDay;
+    #endregion
 
     private void Start()
     {
@@ -31,6 +44,7 @@ public class SeedStateManager : MonoBehaviour
     float auxTimer0, auxTimer1, auxTimer2;
     private void Update()
     {
+        #region Timers
         auxTimer0 += Time.deltaTime;
         if (auxTimer0 >= timerXSunHit)
         {
@@ -51,7 +65,12 @@ public class SeedStateManager : MonoBehaviour
             UpdateAirStat();
             auxTimer2 = 0;
         }
+        #endregion
+
+
     }
+
+    #region Factor updaters
     public void UpdateSunFactor()
     {
         //Debug.Log(dragSun.position / (sunPath.numOfPoints / 2));
@@ -91,7 +110,9 @@ public class SeedStateManager : MonoBehaviour
     {
         airFactor = value;
     }
+    #endregion
 
+    #region Stat updaters
     private void UpdateSunStat()
     {
         stats.temperature += sunXHit * sunFactor;
@@ -104,4 +125,5 @@ public class SeedStateManager : MonoBehaviour
     {
         stats.airLevel += airXHit * airFactor;
     }
+    #endregion
 }

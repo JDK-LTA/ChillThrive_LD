@@ -7,7 +7,7 @@ public class SeedStats : MonoBehaviour
 {
     public float waterLevel = 100f, temperature = 20f, airLevel = 100f;
 
-    public Image waterBar, sunBar, airBar;
+    public Image waterBar, thermometer, airBar;
 
     private void Update()
     {
@@ -16,7 +16,7 @@ public class SeedStats : MonoBehaviour
     public void UpdateBars()
     {
         waterBar.fillAmount = waterLevel / 100f;
-        sunBar.fillAmount = temperature + 20f / 70f; //De -20 a 50 grados centígrados
+        thermometer.fillAmount = temperature + 20f / 70f; //De -20 a 50 grados centígrados
         airBar.fillAmount = airLevel / 100f;
     }
 }
