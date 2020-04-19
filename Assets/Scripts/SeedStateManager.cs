@@ -17,7 +17,7 @@ public class SeedStateManager : MonoBehaviour
     }
 
     #region Variables
-    public GameObject seed, sun;
+    public GameObject seed;
     [HideInInspector] public SeedStats stats;
     public Threshold tempTH, waterTH, airTH;
 

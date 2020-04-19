@@ -6,6 +6,7 @@ public class CloudCreator : MonoBehaviour
 {
     public GameObject cloud;
     public Transform[] spawnPoints;
+    public Transform cloudParent;
     public float timerOnWindZero = 5f;
     float originalTOWZ;
     public float minSpeed = 0.5f, maxSpeed = 3.5f;
@@ -25,7 +26,7 @@ public class CloudCreator : MonoBehaviour
         if (timer >= timerOnWindZero)
         {
             int i = Random.Range(0, spawnPoints.Length);
-            GameObject go = Instantiate(cloud, spawnPoints[i].position, spawnPoints[i].rotation);
+            GameObject go = Instantiate(cloud, spawnPoints[i].position, spawnPoints[i].rotation, cloudParent);
 
             ShakeCloud sc = go.GetComponent<ShakeCloud>();
             sc.speed = Random.Range(minSpeed, maxSpeed);
