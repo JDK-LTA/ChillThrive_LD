@@ -52,3 +52,33 @@ AGUA NORMAL -> BAJA TEMPERATURA, DA HIDRATACIÓN, BAJA NIVEL DE AIRE	//	AGUA FUE
 VIENTO NORMAL -> SUAVIZA TEMPERATURA, SUBE NIVEL DE AIRE			//	VIENTO FUERTE -> SOBREAIREA (AHOGA), ROMPE HOJAS (REDUCE MUCHO FOTOSÍNTESIS)
 TEMPERATURA NORMAL -> SIN EFECTO	//	TEMPERATURA MUY ALTA -> DESHIDRATA (ROMPE HOJAS -> REDUCE MUCHO FOTOSÍNTESIS) 
 //	TEMPERATURA MUY BAJA -> CONGELA (REDUCE FOTOSÍNTESIS Y RECEPCION A AGUA Y AIRE)							
+______________________________________________________________________________________________________________________
+
+Covarianzas del entorno:
+* + temperatura <-> - viento
+* - temperatura <-> + viento
+* + viento -> + nubes
+* - viento -> - nubes
+* + nubes -> - temperatura
+* - nubes -> + temperatura
+
+* Si más de 2 nubes se están tocando, que una de ellas random se ponga a llover y que no la puedas quitar de en medio?
+
+TAREAS:
+* generación random de nubes en función del viento
+* ciclo día-noche
+* covarianzas
+* arte?
+* sonido?
+* feedback visual para indicar si hay lluvia, viento, día/noche, etc
+* sistema de niveles seed
+* scena menu/die/etc
+
+
+
+
+
+
+
+
+
