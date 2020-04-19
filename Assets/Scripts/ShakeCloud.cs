@@ -17,7 +17,7 @@ public class ShakeCloud : MonoBehaviour
     float oldMouseAxis;
     float timer, rainTimer;
     float rainTimeToDecrease = 1f;
-    float rainDecreaser = 0.1f;
+    float rainDecreaser = 0.05f;
 
     private void OnMouseDown()
     {
@@ -64,14 +64,13 @@ public class ShakeCloud : MonoBehaviour
                 rainTimer += Time.deltaTime;
                 if (rainTimer >= rainTimeToDecrease)
                 {
+                    rainTimer = 0;
                     rainPower -= rainDecreaser;
                     if (rainPower <= 0)
                     {
                         StopRaining();
                         Destroy(this.gameObject);
-                    }
-
-                    rainTimer = 0;
+                    }                    
                 }
             }
         }
