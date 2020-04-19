@@ -62,7 +62,7 @@ public class WaterManager : MonoBehaviour
     public void UpdateWaterStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
     {
         SeedStateManager ssm = SeedStateManager.Instance;
-        ssm.stats.waterLevel += waterXHit * waterFactor * ssm.stats.waterReception * Time.deltaTime;
+        ssm.stats.waterLevel += waterXHit * rainFactor * ssm.stats.waterReception * Time.deltaTime;
 
         float actualUpTh = waterTH.up, actualDownTh = waterTH.down;
         if (ssm.stats.temperature > tempTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA
@@ -98,7 +98,7 @@ public class WaterManager : MonoBehaviour
                 waterOff = true;
             }
         }
-        else if (ssm.stats.waterLevel < actualUpTh || ssm.stats.waterLevel > actualDownTh)
+        else if (ssm.stats.waterLevel < actualUpTh && ssm.stats.waterLevel > actualDownTh)
         {
             waterOff = false;
             ssm.stats.StateChange();

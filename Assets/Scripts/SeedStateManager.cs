@@ -20,6 +20,8 @@ public class SeedStateManager : MonoBehaviour
     public GameObject seed, sun;
     [HideInInspector] public SeedStats stats;
     public Threshold tempTH, waterTH, airTH;
+
+    public bool isDay = true;
     #endregion
 
     private void Start()
@@ -34,9 +36,6 @@ public class SeedStateManager : MonoBehaviour
         if (stats.growthLevel >= 1)
         {
             SunManager.Instance.UpdateTempStat(tempTH, waterTH, airTH);
-        }
-        if (stats.growthLevel >= 2)
-        {
             WindManager.Instance.UpdateAirStat(tempTH, waterTH, airTH);
         }
     }

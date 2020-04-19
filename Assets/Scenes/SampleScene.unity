@@ -1228,17 +1228,20 @@ MonoBehaviour:
   airLevel: 50
   waterReception: 1
   airReception: 1
-  waterDecreaseOverTime: 0.5
-  airDecreaseOverTime: 0.5
+  waterDecreaseOverTime: 0.01
+  airDecreaseOverTime: 0.01
   waterBar: {fileID: 1575501589}
   thermometer: {fileID: 574468246}
   airBar: {fileID: 1256176221}
   growth: 0
+  growthFactor: 1
+  growthFactorWhenIll: 0.5
+  growthFactorWhenTwoIll: 0.25
   growthLevel: 0
   growthCheckpoints:
-  - 0
-  - 0
-  - 0
+  - 10
+  - 15
+  - 20
 --- !u!1 &1200632498
 GameObject:
   m_ObjectHideFlags: 0

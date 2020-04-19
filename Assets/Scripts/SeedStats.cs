@@ -17,6 +17,9 @@ public class SeedStats : MonoBehaviour
     public Image waterBar, thermometer, airBar;
 
     public float growth = 0f;
+    public float growthFactor = 1f;
+    public float growthFactorWhenIll = 0.5f;
+    public float growthFactorWhenTwoIll = 0.25f;
     public int growthLevel = 0;
     public float[] growthCheckpoints;
 
@@ -34,11 +37,16 @@ public class SeedStats : MonoBehaviour
             Dead();
         }
 
-        //if(growth > growthCheckpoints[growthLevel])
-        //{
-        //    growthLevel++;
-        //    //NUEVO NIVEL
-        //}
+
+        growth += growthFactor * Time.deltaTime;
+        if (growthLevel < growthCheckpoints.Length)
+        {
+            if (growth > growthCheckpoints[growthLevel])
+            {
+                growthLevel++;
+                // NUEVO NIVEL
+            }
+        }
 
         UpdateBars();
     }
@@ -47,10 +55,12 @@ public class SeedStats : MonoBehaviour
     {
         if (mainState == PlantState.HEALTHY)
         {
+            growthFactor = growthFactorWhenIll;
             mainState = state;
         }
         else if (secondaryState == PlantState.HEALTHY)
         {
+            growthFactor = growthFactorWhenTwoIll;
             secondaryState = state;
         }
         else
@@ -63,10 +73,12 @@ public class SeedStats : MonoBehaviour
         if (secondaryState != PlantState.HEALTHY)
         {
             mainState = secondaryState;
+            growthFactor = growthFactorWhenIll;
         }
         else
         {
             mainState = PlantState.HEALTHY;
+            growthFactor = 1f;
         }
         secondaryState = PlantState.HEALTHY;
     }

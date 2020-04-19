@@ -10,28 +10,32 @@ public class SunManager : MonoBehaviour
         Instance = this;
     }
     public DragSun dragSun;
+    public DragSun dragMoon;
+    DragSun dragAstro;
+
     public BezierPath sunPath;
     public float tempFactor;
     public float tempXHit = 0.1f;
 
-    bool isDay;
     public void UpdateTempFactor()
     {
-        if ((float)dragSun.position / (float)sunPath.numOfPoints < 0.05f || (float)dragSun.position / (float)sunPath.numOfPoints > 0.95f)
+        float dayOrNight = SeedStateManager.Instance.isDay ? 1 : -1;
+        dragAstro = SeedStateManager.Instance.isDay ? dragSun : dragMoon;
+
+        if ((float)dragAstro.position / (float)sunPath.numOfPoints < 0.05f || (float)dragAstro.position / (float)sunPath.numOfPoints > 0.95f)
         {
-            isDay = false;
             tempFactor = 0f;
         }
-        else if ((float)dragSun.position / (float)sunPath.numOfPoints < 0.5f)
+        else if ((float)dragAstro.position / (float)sunPath.numOfPoints < 0.5f)
         {
-            tempFactor = Mathf.Lerp(0.1f, 1, (float)dragSun.position / ((float)sunPath.numOfPoints / 2));
+            tempFactor =  dayOrNight * Mathf.Lerp(0.1f, 1, (float)dragAstro.position / ((float)sunPath.numOfPoints / 2));
         }
         else
         {
-            tempFactor = Mathf.Lerp(1, 0.1f, (((float)dragSun.position / ((float)sunPath.numOfPoints / 2)) - 1));
+            tempFactor = dayOrNight * Mathf.Lerp(1, 0.1f, (((float)dragAstro.position / ((float)sunPath.numOfPoints / 2)) - 1));
         }
 
-        tempFactor *= 1 - WaterManager.Instance.cloudFactor; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
+        //tempFactor *= 1 - WaterManager.Instance.cloudFactor; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
     }
 
     bool temperatureOff = false;
@@ -63,7 +67,7 @@ public class SunManager : MonoBehaviour
                 temperatureOff = true;
             }
         }
-        else if (ssm.stats.temperature < actualUpTh || ssm.stats.temperature > actualDownTh)
+        else if (ssm.stats.temperature < actualUpTh && ssm.stats.temperature > actualDownTh)
         {
             temperatureOff = false;
             ssm.stats.StateChange();

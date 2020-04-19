@@ -8,19 +8,36 @@ public class DragSun : MonoBehaviour
     public BezierPath path;
     public int position = 0;
     public float secsToAdvance = 1f;
+    public bool isSun = true;
+    public DragSun otherAstro;
 
     float timer;
 
     private void Start()
     {
-        transform.position = path.positions[position];
+        if (isSun)
+        {
+            transform.position = path.positions[position];
+        }
+        else
+        {
+            transform.position = new Vector3(-100, -100);
+        }
+
     }
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > secsToAdvance)
+        if (SeedStateManager.Instance.isDay == isSun)
         {
-            SunAdvance();
+            timer += Time.deltaTime;
+            if (timer > secsToAdvance)
+            {
+                SunAdvance();
+                timer = 0;
+            }
+        }
+        else
+        {
             timer = 0;
         }
     }
@@ -30,8 +47,13 @@ public class DragSun : MonoBehaviour
         if (position >= path.positions.Length)
         {
             position = 0;
+            transform.position = new Vector3(-100, -100);
+            SeedStateManager.Instance.isDay = !isSun;
         }
-        transform.position = path.positions[position];
+        else
+        {
+            transform.position = path.positions[position];
+        }
         SunManager.Instance.UpdateTempFactor();
     }
     private void OnMouseDown()
@@ -53,7 +75,7 @@ public class DragSun : MonoBehaviour
     }
     private Vector3 FindClosestPoint()
     {
-        Vector3 closest = path.positions[path.numOfPoints-1];
+        Vector3 closest = path.positions[path.numOfPoints - 1];
         float lastDistance = 9999f;
         for (int i = 0; i < path.positions.Length; i++)
         {
@@ -65,7 +87,7 @@ public class DragSun : MonoBehaviour
                 position = i;
             }
         }
-        
+
         return closest;
     }
 }

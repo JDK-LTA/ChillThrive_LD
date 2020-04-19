@@ -66,7 +66,7 @@ public class WindManager : MonoBehaviour
                 airOff = true;
             }
         }
-        else if (ssm.stats.airLevel < actualUpTh || ssm.stats.airLevel > actualDownTh)
+        else if (ssm.stats.airLevel < actualUpTh && ssm.stats.airLevel > actualDownTh)
         {
             airOff = false;
             ssm.stats.StateChange();

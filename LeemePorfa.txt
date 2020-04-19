@@ -65,16 +65,14 @@ Covarianzas del entorno:
 * Si más de 2 nubes se están tocando, que una de ellas random se ponga a llover y que no la puedas quitar de en medio?
 
 TAREAS:
-* generación random de nubes en función del viento
-* ciclo día-noche
+♥* generación random de nubes en función del viento
+♥* ciclo día-noche
 * covarianzas
 * arte?
 * sonido?
 * feedback visual para indicar si hay lluvia, viento, día/noche, etc
-* sistema de niveles seed
+♥* sistema de niveles seed
 * scena menu/die/etc
-
-
 
 
 

@@ -25,7 +25,7 @@ public class CloudCreator : MonoBehaviour
         if (timer >= timerOnWindZero)
         {
             int i = Random.Range(0, spawnPoints.Length);
-            GameObject go = Instantiate(cloud, spawnPoints[i]);
+            GameObject go = Instantiate(cloud, spawnPoints[i].position, spawnPoints[i].rotation);
 
             ShakeCloud sc = go.GetComponent<ShakeCloud>();
             sc.speed = Random.Range(minSpeed, maxSpeed);
@@ -34,7 +34,7 @@ public class CloudCreator : MonoBehaviour
             {
                 sc.speed *= -1;
             }
-
+            
             //WaterManager.Instance.AddCloudToList(sc, sc.rainPower);
 
             timer = 0;
