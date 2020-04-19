@@ -212,7 +212,7 @@ Transform:
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &48361136
 CircleCollider2D:
@@ -594,23 +594,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031ffe1b45570bc46a899204362909d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
   seed: {fileID: 1152507372}
   sun: {fileID: 1238385173}
-  dragSun: {fileID: 1238385177}
-  sunPath: {fileID: 174480358}
-  sunXHit: 5
-  waterXHit: 5
-  airXHit: 5
-  timerXSunHit: 0
-  timerXWaterHit: 0
-  timerXAirHit: 0
-  sunFactor: 0
-  waterFactor: 0
-  airFactor: 0
-  cloudFactor: 0
-  rainFactor: 0
-  rainThreshold: 0.7
+  stats: {fileID: 0}
+  tempTH:
+    up: 30
+    down: 0
+    outsideThChanger: 5
+  waterTH:
+    up: 75
+    down: 25
+    outsideThChanger: 5
+  airTH:
+    up: 75
+    down: 25
+    outsideThChanger: 5
 --- !u!4 &492709283
 Transform:
   m_ObjectHideFlags: 0
@@ -618,12 +616,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 492709281}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 6.26, z: -1165.5115}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3802565, y: 6.430289, z: 17.509033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 726590932}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -720,7 +718,7 @@ GameObject:
   - component: {fileID: 574468247}
   - component: {fileID: 574468246}
   m_Layer: 5
-  m_Name: SunBar
+  m_Name: Thermometer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -861,6 +859,40 @@ Transform:
   m_Father: {fileID: 2126903734}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &726590931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726590932}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726590932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726590931}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5502565, y: -0.17028868, z: -1183.0205}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 492709283}
+  - {fileID: 1059254784}
+  - {fileID: 1147627657}
+  - {fileID: 1135669652}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1036510334
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +972,149 @@ Transform:
   m_Father: {fileID: 2126903734}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1059254783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059254784}
+  - component: {fileID: 1059254785}
+  m_Layer: 0
+  m_Name: WindManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059254784
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059254783}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 726590932}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1059254785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059254783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88cdb3fbd1ffd5f42a89224d977ab938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  airFactor: 0
+  airXHit: 0.1
+  airDecreaser: 0.01
+  airDecreaserTimer: 0.25
+--- !u!1 &1135669651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135669652}
+  - component: {fileID: 1135669653}
+  m_Layer: 0
+  m_Name: WaterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1135669652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135669651}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 726590932}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1135669653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135669651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4152b639abbd44142ae9e20074664ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rainFactor: 0
+  cloudFactor: 0
+  rainThreshold: 0.7
+  waterFactor: 0
+  waterXHit: 0.1
+  timeToDecreaseRain: 1
+--- !u!1 &1147627656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1147627657}
+  - component: {fileID: 1147627658}
+  m_Layer: 0
+  m_Name: SunManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1147627657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147627656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 726590932}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1147627658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147627656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34afd3566e18814b8f622f95cdb51c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSun: {fileID: 1238385177}
+  sunPath: {fileID: 174480358}
+  tempFactor: 0
+  tempXHit: 0.1
 --- !u!1 &1152507372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,12 +1207,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab3e213f8090da45b40f0c2094f4118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 100
+  waterLevel: 50
   temperature: 20
-  airLevel: 100
+  airLevel: 50
+  waterDecreaseOverTime: 0.5
+  airDecreaseOverTime: 0.5
   waterBar: {fileID: 1575501589}
-  thermometer: {fileID: 0}
+  thermometer: {fileID: 574468246}
   airBar: {fileID: 1256176221}
+  growth: 0
+  growthLevel: 0
+  growthCheckpoints:
+  - 0
+  - 0
+  - 0
 --- !u!1 &1238385173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1849,7 @@ GameObject:
   - component: {fileID: 2076302176}
   - component: {fileID: 2076302179}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: WindButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1928,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2076302179
 CircleCollider2D:
@@ -1795,5 +1978,5 @@ Transform:
   - {fileID: 1502834897}
   - {fileID: 1036510336}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

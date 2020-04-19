@@ -5,9 +5,11 @@ using UnityEngine;
 public class ShakeCloud : MonoBehaviour
 {
     public float speed;
+    public float rainPower = 0.5f;
 
     private Vector3 mOffset;
     bool isDragged = false;
+    bool isRaining = false;
 
     int timesShaken = 0, timesToBeShaken = 6;
     float timeToCheckShake = 0.5f;
@@ -41,8 +43,15 @@ public class ShakeCloud : MonoBehaviour
     {
         if (!isDragged)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-            timer = 0.25f;
+            if (!isRaining)
+            {
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+                timer = 0.25f;
+            }
+            else
+            {
+                
+            }
         }
         else
         {
@@ -73,5 +82,6 @@ public class ShakeCloud : MonoBehaviour
     public void StartRaining()
     {
         Debug.Log("It's raining");
+        WaterManager.Instance.AddCloudToList(this, rainPower);
     }
 }

@@ -40,7 +40,6 @@ public class BlowWind : MonoBehaviour
 
         float xDelta = Mathf.Abs(lastMousePos.x - mousePos.x);
         float mouseSpeed = xDelta / diffTime/100;
-        Debug.Log(mouseSpeed);
         SendWind(mouseSpeed);
 
         diffTime = 0;
@@ -63,13 +62,10 @@ public class BlowWind : MonoBehaviour
         {
             power = maxPower;
         }
-        Debug.Log("power: " + power);
-        SeedStateManager.Instance.airFactor += (power/2) / maxPower;
-        if (SeedStateManager.Instance.airFactor > 1)
+        WindManager.Instance.airFactor += (power/2) / maxPower;
+        if (WindManager.Instance.airFactor > 1)
         {
-            SeedStateManager.Instance.airFactor = 1;
+            WindManager.Instance.airFactor = 1;
         }
-        Debug.Log("airFactor: " + SeedStateManager.Instance.airFactor);
-
     }
 }

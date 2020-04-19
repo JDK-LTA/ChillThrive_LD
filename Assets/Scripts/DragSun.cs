@@ -32,6 +32,7 @@ public class DragSun : MonoBehaviour
             position = 0;
         }
         transform.position = path.positions[position];
+        SunManager.Instance.UpdateTempFactor();
     }
     private void OnMouseDown()
     {
@@ -41,7 +42,7 @@ public class DragSun : MonoBehaviour
     private void OnMouseDrag()
     {
         transform.position = FindClosestPoint();
-        SeedStateManager.Instance.UpdateSunFactor();
+        SunManager.Instance.UpdateTempFactor();
         timer = 0;
     }
 
