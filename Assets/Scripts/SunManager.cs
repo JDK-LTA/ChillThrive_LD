@@ -14,6 +14,7 @@ public class SunManager : MonoBehaviour
     DragSun dragAstro;
 
     public BezierPath sunPath;
+    public float environmentTemperature = 15f; //De -10 a 40 grados centígrados
     public float tempFactor;
     public float tempXHit = 0.1f;
     public int numOfCloudsToBlockSun = 15;
@@ -45,7 +46,8 @@ public class SunManager : MonoBehaviour
     public void UpdateTempStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
     {
         SeedStateManager ssm = SeedStateManager.Instance;
-        ssm.stats.temperature += tempXHit * tempFactor * Time.deltaTime;
+        environmentTemperature += tempXHit * tempFactor * Time.deltaTime;
+        ssm.stats.temperature = Mathf.Lerp(ssm.stats.temperature, environmentTemperature, ssm.stats.temperatureReception);
 
         float actualUpTh = tempTH.up, actualDownTh = tempTH.down;
         if (ssm.stats.airLevel > airTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA

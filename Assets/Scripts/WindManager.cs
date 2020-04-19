@@ -25,7 +25,7 @@ public class WindManager : MonoBehaviour
     }
     void Update()
     {
-        airXHit = originalAirXHit + -airVarianceWithTemperature * ((SeedStateManager.Instance.stats.temperature - 15) / 25);
+        airXHit = originalAirXHit + -airVarianceWithTemperature * ((SunManager.Instance.environmentTemperature - 15) / 25);
         if (airFactor > 0)
         {
             auxTimerAD += Time.deltaTime;
@@ -47,7 +47,7 @@ public class WindManager : MonoBehaviour
     {
 
         SeedStateManager ssm = SeedStateManager.Instance;
-        ssm.stats.airLevel += airXHit * airFactor * Time.deltaTime;
+        ssm.stats.airLevel += airXHit * airFactor * ssm.stats.airReception * Time.deltaTime;
 
         float actualUpTh = airTH.up, actualDownTh = airTH.down;
         if (ssm.stats.temperature > tempTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA

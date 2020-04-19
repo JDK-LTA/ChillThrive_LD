@@ -62,6 +62,11 @@ Covarianzas del entorno:
 * + nubes -> - temperatura
 * - nubes -> + temperatura
 
+Covarianzas de la planta:
+* + temperatura -> ++ gasto de agua; ++ recepción agua; ++ gasto de aire; ++ recepción aire;
+* + agua -> - recepción temperatura; - recepción aire;
+* + aire -> - recepción temperatura; - recepción agua;
+
 * Si más de 2 nubes se están tocando, que una de ellas random se ponga a llover y que no la puedas quitar de en medio?
 
 TAREAS:

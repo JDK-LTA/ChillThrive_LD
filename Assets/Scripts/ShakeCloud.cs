@@ -19,6 +19,10 @@ public class ShakeCloud : MonoBehaviour
     float rainTimeToDecrease = 1f;
     float rainDecreaser = 0.05f;
 
+    public List<GameObject> cloudsInContact = new List<GameObject>();
+    public int colliderCount = 0;
+    bool contacted = false;
+
     private void OnMouseDown()
     {
         mOffset = gameObject.transform.position - GetMouseWorldPos();
@@ -98,6 +102,30 @@ public class ShakeCloud : MonoBehaviour
             }
             oldMouseAxis = mouseXAxis;
         }
+
+        if (cloudsInContact.Count >= 2)
+        {
+            contacted = true;
+
+            cloudsInContact.Add(gameObject);
+            Debug.Log("Do the multiple clouds thing");
+            int aux = Random.Range(0, cloudsInContact.Count);
+            Debug.Log(aux);
+            for (int i = cloudsInContact.Count - 1; i >= 0; i--)
+            {
+                if (i != aux)
+                {
+                    Debug.Log("asd");
+                    Destroy(cloudsInContact[i].gameObject);
+                }
+                else
+                {
+                    cloudsInContact[i].GetComponent<ShakeCloud>().StartRaining();
+                    cloudsInContact[i].GetComponent<Rigidbody2D>().Sleep();
+                    cloudsInContact[i].GetComponent<Collider2D>().enabled = false;
+                }
+            }
+        }
     }
 
     public void StartRaining()
@@ -121,7 +149,21 @@ public class ShakeCloud : MonoBehaviour
         {
             DestroyCloud();
         }
+        else if (collision.tag == "Cloud")
+        {
+            colliderCount++;
+            cloudsInContact.Add(collision.gameObject);
+        }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Cloud" && !contacted)
+        {
+            colliderCount--;
+            cloudsInContact.Remove(collision.gameObject);
+        }
+    }
+
     private void DestroyCloud()
     {
         WaterManager.Instance.cloudsAlive.Remove(this);

@@ -13,7 +13,11 @@ public class SeedStats : MonoBehaviour
     public float waterLevel = 100f, temperature = 15f, airLevel = 100f;
     public float waterReception = 1f;
     public float airReception = 1f;
-    public float waterDecreaseOverTime = 0, airDecreaseOverTime = 3;
+    public float temperatureReception = 1f;
+    public float temperatureThresholdEffectOnAirReception = 15f;
+    public float temperatureThresholdEffectOnWaterReception = 15f;
+    public float waterDecreaseOverTime = 0.1f, airDecreaseOverTime = 0.1f;
+    float originalWDOT, originalADOT;
     public Image waterBar, thermometer, airBar;
 
     public float growth = 0f;
@@ -23,6 +27,11 @@ public class SeedStats : MonoBehaviour
     public int growthLevel = 0;
     public float[] growthCheckpoints;
 
+    private void Start()
+    {
+        originalWDOT = waterDecreaseOverTime;
+        originalADOT = airDecreaseOverTime;
+    }
     private void Update()
     {
         waterLevel -= Time.deltaTime * waterDecreaseOverTime;
@@ -48,7 +57,29 @@ public class SeedStats : MonoBehaviour
             }
         }
 
+        UpdateReceptionsAndWastes();
         UpdateBars();
+    }
+
+    public void UpdateReceptionsAndWastes()
+    {
+        //SI TEMPERATURA == 30 && AGUA == 50 -> RECEPCION DE AIRE == 1 ____ AGUA >= 50 AIRREC--  ____ 
+        airReception = 1 + ((temperature - temperatureThresholdEffectOnAirReception) / 50f);
+        if (waterLevel > 50)
+        {
+            airReception -= waterLevel / 500;
+        }
+
+        waterReception =  1 + ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
+        if (airLevel > 50)
+        {
+            waterReception -= airLevel / 500;
+        }
+
+        temperatureReception = 1 - (waterLevel / 400 + airLevel / 400);
+
+        airDecreaseOverTime = originalADOT * ((temperature - temperatureThresholdEffectOnAirReception) / 50f);
+        waterDecreaseOverTime = originalWDOT * ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
     }
 
     public void StateChange(PlantState state, bool add)
@@ -82,9 +113,9 @@ public class SeedStats : MonoBehaviour
                 secondaryState = PlantState.HEALTHY;
             }
         }
-        
+
     }
-    
+
     public void UpdateBars()
     {
         waterBar.fillAmount = waterLevel / 100f;
