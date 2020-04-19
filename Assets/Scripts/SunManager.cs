@@ -16,6 +16,7 @@ public class SunManager : MonoBehaviour
     public BezierPath sunPath;
     public float tempFactor;
     public float tempXHit = 0.1f;
+    public int numOfCloudsToBlockSun = 15;
 
     public void UpdateTempFactor()
     {
@@ -35,7 +36,9 @@ public class SunManager : MonoBehaviour
             tempFactor = dayOrNight * Mathf.Lerp(1, 0.1f, (((float)dragAstro.position / ((float)sunPath.numOfPoints / 2)) - 1));
         }
 
-        //tempFactor *= 1 - WaterManager.Instance.cloudFactor; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
+        tempFactor *= SeedStateManager.Instance.isDay ? 
+            1f - (float)WaterManager.Instance.cloudsAlive.Count / (float)numOfCloudsToBlockSun :
+            1f + (float)WaterManager.Instance.cloudsAlive.Count / (float)numOfCloudsToBlockSun; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
     }
 
     bool temperatureOff = false;

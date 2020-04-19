@@ -29,6 +29,8 @@ public class CloudCreator : MonoBehaviour
             GameObject go = Instantiate(cloud, spawnPoints[i].position, spawnPoints[i].rotation, cloudParent);
 
             ShakeCloud sc = go.GetComponent<ShakeCloud>();
+            WaterManager.Instance.cloudsAlive.Add(sc);
+
             sc.speed = Random.Range(minSpeed, maxSpeed);
             sc.rainPower = (float)((int)Random.Range(minRain * 10, maxRain * 10)) / 10;
             if (spawnPoints[i].transform.position.x > 0)

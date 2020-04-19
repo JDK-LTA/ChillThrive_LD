@@ -10,7 +10,8 @@ public class WaterManager : MonoBehaviour
         Instance = this;
     }
 
-    public List<ShakeCloud> clouds = new List<ShakeCloud>();
+    public List<ShakeCloud> cloudsRaining = new List<ShakeCloud>();
+    public List<ShakeCloud> cloudsAlive = new List<ShakeCloud>();
 
     public float rainFactor;
     public float cloudFactor;
@@ -39,22 +40,12 @@ public class WaterManager : MonoBehaviour
         //}
     }
 
-    public void AddCloudToList(ShakeCloud cloud)
-    {
-        clouds.Add(cloud);
-    }
-
-    public void DeleteCloudFromList(ShakeCloud cloud)
-    {
-        clouds.Remove(cloud);
-    }
-
     private void Update()
     {
         rainFactor = 0;
-        for (int i = 0; i < clouds.Count; i++)
+        for (int i = 0; i < cloudsRaining.Count; i++)
         {
-            rainFactor += clouds[i].rainPower;
+            rainFactor += cloudsRaining[i].rainPower;
             rainFactor = Mathf.Clamp(rainFactor, 0f, 1f);
         }
     }

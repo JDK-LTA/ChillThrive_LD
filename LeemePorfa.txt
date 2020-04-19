@@ -67,7 +67,8 @@ Covarianzas del entorno:
 TAREAS:
 ♥* generación random de nubes en función del viento
 ♥* ciclo día-noche
-* covarianzas
+♥* covarianzas entorno
+* covarianzas parámetros planta
 * arte?
 * sonido?
 * feedback visual para indicar si hay lluvia, viento, día/noche, etc

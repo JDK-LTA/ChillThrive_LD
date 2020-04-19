@@ -88,7 +88,7 @@ public class SeedStats : MonoBehaviour
     public void UpdateBars()
     {
         waterBar.fillAmount = waterLevel / 100f;
-        thermometer.fillAmount = temperature + 20f / 50f; //De -10 a 40 grados centígrados
+        thermometer.fillAmount = (temperature + 10f) / 50f; //De -10 a 40 grados centígrados
         airBar.fillAmount = airLevel / 100f;
     }
 

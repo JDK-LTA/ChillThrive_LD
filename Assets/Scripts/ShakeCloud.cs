@@ -69,8 +69,8 @@ public class ShakeCloud : MonoBehaviour
                     if (rainPower <= 0)
                     {
                         StopRaining();
-                        Destroy(this.gameObject);
-                    }                    
+                        DestroyCloud();
+                    }
                 }
             }
         }
@@ -103,14 +103,28 @@ public class ShakeCloud : MonoBehaviour
     public void StartRaining()
     {
         Debug.Log("It's raining");
-        WaterManager.Instance.AddCloudToList(this);
+        WaterManager.Instance.cloudsRaining.Add(this);
 
         stopDragging = true;
         isRaining = true;
+        isDragged = false;
     }
     public void StopRaining()
     {
         isRaining = false;
-        WaterManager.Instance.DeleteCloudFromList(this);
+        WaterManager.Instance.cloudsRaining.Remove(this);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Destroyer")
+        {
+            DestroyCloud();
+        }
+    }
+    private void DestroyCloud()
+    {
+        WaterManager.Instance.cloudsAlive.Remove(this);
+        Destroy(gameObject);
     }
 }

@@ -12,13 +12,20 @@ public class WindManager : MonoBehaviour
 
     public float airFactor;
     public float airXHit = 0.1f;
+    float originalAirXHit;
+    public float airVarianceWithTemperature = 0.05f;
     public float airDecreaser = 0.01f;
     public float airDecreaserTimer = 0.25f;
 
     float auxTimerAD = 0;
 
+    private void Start()
+    {
+        originalAirXHit = airXHit;
+    }
     void Update()
     {
+        airXHit = originalAirXHit + -airVarianceWithTemperature * ((SeedStateManager.Instance.stats.temperature - 15) / 25);
         if (airFactor > 0)
         {
             auxTimerAD += Time.deltaTime;
@@ -38,6 +45,7 @@ public class WindManager : MonoBehaviour
     bool airOff = false;
     public void UpdateAirStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
     {
+
         SeedStateManager ssm = SeedStateManager.Instance;
         ssm.stats.airLevel += airXHit * airFactor * Time.deltaTime;
 

@@ -8,8 +8,11 @@ public class EnvironmentManager : MonoBehaviour
     SunManager su = SunManager.Instance;
     WindManager wi = WindManager.Instance;
 
+    public float waterVariance = 0.05f;
+    public float temperaturVariance = 0.05f;
+    public float airVariance = 0.05f;
+
     void UpdateCovariances()
     {
-        wi.airDecreaser += (SeedStateManager.Instance.stats.temperature - 15)/100;
     }
 }
