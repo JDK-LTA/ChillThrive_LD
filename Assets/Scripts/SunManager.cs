@@ -31,7 +31,7 @@ public class SunManager : MonoBehaviour
             tempFactor = Mathf.Lerp(1, 0.1f, (((float)dragSun.position / ((float)sunPath.numOfPoints / 2)) - 1));
         }
 
-        tempFactor *= 1 - WaterManager.Instance.cloudFactor;
+        tempFactor *= 1 - WaterManager.Instance.cloudFactor; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
     }
 
     bool temperatureOff = false;

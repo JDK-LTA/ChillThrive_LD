@@ -10,18 +10,7 @@ public class WaterManager : MonoBehaviour
         Instance = this;
     }
 
-    public class RainingCloud
-    {
-        public RainingCloud(ShakeCloud sc, float value)
-        {
-            cloud = sc;
-            rainingValue = value;
-        }
-        public ShakeCloud cloud;
-        public float rainingValue;
-    }
-
-    public List<RainingCloud> rainingClouds = new List<RainingCloud>();
+    public List<ShakeCloud> clouds = new List<ShakeCloud>();
 
     public float rainFactor;
     public float cloudFactor;
@@ -31,63 +20,49 @@ public class WaterManager : MonoBehaviour
     public float waterFactor;
     public float waterXHit = 0.1f;
 
+    bool waterOff = false;
+
     public void UpdateWaterFactor(float value)
     {
         value += value * rainFactor;
         waterFactor = value;
     }
+
+    //TODO: ARREGLAR EL CLOUD FACTOR
     public void UpdateCloudFactor(float value)
     {
         cloudFactor = value;
-        if (cloudFactor > rainThreshold)
-        {
-            isRaining = true;
-            rainFactor = Mathf.Lerp(0, 1, (cloudFactor - rainThreshold) / (1 - rainThreshold));
-        }
+        //if (cloudFactor > rainThreshold)
+        //{
+        //    isRaining = true;
+        //    rainFactor = Mathf.Lerp(0, 1, (cloudFactor - rainThreshold) / (1 - rainThreshold));
+        //}
     }
 
-    public void AddCloudToList(ShakeCloud cloud, float rainValue)
+    public void AddCloudToList(ShakeCloud cloud)
     {
-        rainingClouds.Add(new RainingCloud(cloud, rainValue));
-        cloudTimers.Add(0f);
-    }
-    public void DeleteCloudFromList(int i)
-    {
-        rainingClouds.Remove(rainingClouds[i]);
-        cloudTimers.Remove(cloudTimers[i]);
+        clouds.Add(cloud);
     }
 
-    public float timeToDecreaseRain = 1f;
-    List<float> cloudTimers = new List<float>();
+    public void DeleteCloudFromList(ShakeCloud cloud)
+    {
+        clouds.Remove(cloud);
+    }
+
     private void Update()
     {
         rainFactor = 0;
-        for (int i = 0; i < rainingClouds.Count; i++)
+        for (int i = 0; i < clouds.Count; i++)
         {
-            cloudTimers[i] += Time.deltaTime;
-            if (cloudTimers[i] >= timeToDecreaseRain)
-            {
-                rainingClouds[i].rainingValue -= 0.1f;
-                if (rainingClouds[i].rainingValue <= 0)
-                {
-                    DeleteCloudFromList(i);
-
-                }
-
-                cloudTimers[i] = 0;
-            }
-
-            rainFactor += rainingClouds[i].rainingValue;
+            rainFactor += clouds[i].rainPower;
+            Mathf.Clamp(rainFactor, 0f, 1f);
         }
     }
 
-
-
-    bool waterOff = false;
     public void UpdateWaterStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
     {
         SeedStateManager ssm = SeedStateManager.Instance;
-        ssm.stats.waterLevel += waterXHit * waterFactor * Time.deltaTime;
+        ssm.stats.waterLevel += waterXHit * waterFactor * ssm.stats.waterReception * Time.deltaTime;
 
         float actualUpTh = waterTH.up, actualDownTh = waterTH.down;
         if (ssm.stats.temperature > tempTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA
@@ -100,6 +75,7 @@ public class WaterManager : MonoBehaviour
             actualDownTh -= tempTH.outsideThChanger;
             actualUpTh -= tempTH.outsideThChanger;
         }
+
         //if (stats.airLevel > airTH.up)
         //{
         //    actualDownTh += airTH.outsideThChanger;

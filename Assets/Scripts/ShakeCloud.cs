@@ -10,28 +10,39 @@ public class ShakeCloud : MonoBehaviour
     private Vector3 mOffset;
     bool isDragged = false;
     bool isRaining = false;
+    bool stopDragging = false;
 
     int timesShaken = 0, timesToBeShaken = 6;
     float timeToCheckShake = 0.5f;
     float oldMouseAxis;
-    float timer;
-    //float timer = 0;
+    float timer, rainTimer;
+    float rainTimeToDecrease = 1f;
+    float rainDecreaser = 0.1f;
+
     private void OnMouseDown()
     {
         mOffset = gameObject.transform.position - GetMouseWorldPos();
         isDragged = true;
+
+        if (isRaining)
+        {
+            StopRaining();
+        }
     }
     private void OnMouseUp()
     {
         isDragged = false;
+        stopDragging = false;
         timesShaken = 0;
         timer = 0;
     }
 
     private void OnMouseDrag()
     {
-        transform.position = new Vector3(GetMouseWorldPos().x + mOffset.x, transform.position.y);
-        //timer = 0;
+        if (!stopDragging)
+        {
+            transform.position = new Vector3(GetMouseWorldPos().x + mOffset.x, transform.position.y);
+        }
     }
     private Vector3 GetMouseWorldPos()
     {
@@ -50,13 +61,24 @@ public class ShakeCloud : MonoBehaviour
             }
             else
             {
-                
+                rainTimer += Time.deltaTime;
+                if (rainTimer >= rainTimeToDecrease)
+                {
+                    rainPower -= rainDecreaser;
+                    if (rainPower <= 0)
+                    {
+                        StopRaining();
+                        Destroy(this.gameObject);
+                    }
+
+                    rainTimer = 0;
+                }
             }
         }
         else
         {
             float mouseXAxis = Input.GetAxis("Mouse X");
-            if (/*Mathf.Sign(mouseXAxis) != Mathf.Sign(oldMouseAxis) &&*/ mouseXAxis - oldMouseAxis > 1f)
+            if (mouseXAxis - oldMouseAxis > 1f)
             {
                 Debug.Log("Shaken");
                 timesShaken++;
@@ -82,6 +104,14 @@ public class ShakeCloud : MonoBehaviour
     public void StartRaining()
     {
         Debug.Log("It's raining");
-        WaterManager.Instance.AddCloudToList(this, rainPower);
+        WaterManager.Instance.AddCloudToList(this);
+
+        stopDragging = true;
+        isRaining = true;
+    }
+    public void StopRaining()
+    {
+        isRaining = false;
+        WaterManager.Instance.DeleteCloudFromList(this);
     }
 }

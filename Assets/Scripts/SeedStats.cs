@@ -11,6 +11,8 @@ public class SeedStats : MonoBehaviour
     int nOfConditions = 0;
 
     public float waterLevel = 100f, temperature = 15f, airLevel = 100f;
+    public float waterReception = 1f;
+    public float airReception = 1f;
     public float waterDecreaseOverTime = 3, airDecreaseOverTime = 3;
     public Image waterBar, thermometer, airBar;
 
