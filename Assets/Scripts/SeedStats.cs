@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class SeedStats : MonoBehaviour
 {
-    PlantState mainState = PlantState.HEALTHY;
-    PlantState secondaryState = PlantState.HEALTHY;
+    public PlantState mainState = PlantState.HEALTHY;
+    public PlantState secondaryState = PlantState.HEALTHY;
 
     int nOfConditions = 0;
 
     public float waterLevel = 100f, temperature = 15f, airLevel = 100f;
     public float waterReception = 1f;
     public float airReception = 1f;
-    public float waterDecreaseOverTime = 3, airDecreaseOverTime = 3;
+    public float waterDecreaseOverTime = 0, airDecreaseOverTime = 3;
     public Image waterBar, thermometer, airBar;
 
     public float growth = 0f;
@@ -43,34 +43,37 @@ public class SeedStats : MonoBehaviour
         UpdateBars();
     }
 
-    public void StateChange(PlantState state)
+    public void StateChange(PlantState state, bool add)
     {
-        if (mainState == PlantState.HEALTHY)
+        if (add)
         {
-            mainState = state;
-        }
-        else if (secondaryState == PlantState.HEALTHY)
-        {
-            secondaryState = state;
+            if (mainState == PlantState.HEALTHY)
+            {
+                mainState = state;
+            }
+            else if (secondaryState == PlantState.HEALTHY)
+            {
+                secondaryState = state;
+            }
+            else
+            {
+                Dead();
+            }
         }
         else
         {
-            Dead();
+            if (mainState == state)
+            {
+                mainState = PlantState.HEALTHY;
+            }
+            else if (secondaryState == state)
+            {
+                secondaryState = PlantState.HEALTHY;
+            }
         }
+        
     }
-    public void StateChange()
-    {
-        if (secondaryState != PlantState.HEALTHY)
-        {
-            mainState = secondaryState;
-        }
-        else
-        {
-            mainState = PlantState.HEALTHY;
-        }
-        secondaryState = PlantState.HEALTHY;
-    }
-
+    
     public void UpdateBars()
     {
         waterBar.fillAmount = waterLevel / 100f;

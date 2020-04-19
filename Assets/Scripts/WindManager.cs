@@ -57,19 +57,20 @@ public class WindManager : MonoBehaviour
         {
             if (ssm.stats.airLevel >= actualUpTh)
             {
-                ssm.stats.StateChange(PlantState.ANXIOUS);
+                ssm.stats.StateChange(PlantState.ANXIOUS, true);
                 airOff = true;
             }
             else if (ssm.stats.airLevel <= actualDownTh)
             {
-                ssm.stats.StateChange(PlantState.CHOKING);
+                ssm.stats.StateChange(PlantState.CHOKING, true);
                 airOff = true;
             }
         }
-        else if (ssm.stats.airLevel < actualUpTh || ssm.stats.airLevel > actualDownTh)
+        else if (ssm.stats.airLevel < actualUpTh && ssm.stats.airLevel > actualDownTh)
         {
             airOff = false;
-            ssm.stats.StateChange();
+            ssm.stats.StateChange(PlantState.ANXIOUS, false);
+            ssm.stats.StateChange(PlantState.CHOKING, false);
         }
     }
 }

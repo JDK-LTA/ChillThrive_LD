@@ -18,7 +18,7 @@ public class WaterManager : MonoBehaviour
     private bool isRaining, isStorming;
 
     public float waterFactor;
-    public float waterXHit = 0.1f;
+    public float waterXHit = 0.3f;
 
     bool waterOff = false;
 
@@ -55,14 +55,14 @@ public class WaterManager : MonoBehaviour
         for (int i = 0; i < clouds.Count; i++)
         {
             rainFactor += clouds[i].rainPower;
-            Mathf.Clamp(rainFactor, 0f, 1f);
+            rainFactor = Mathf.Clamp(rainFactor, 0f, 1f);
         }
     }
 
     public void UpdateWaterStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
     {
         SeedStateManager ssm = SeedStateManager.Instance;
-        ssm.stats.waterLevel += waterXHit * waterFactor * ssm.stats.waterReception * Time.deltaTime;
+        ssm.stats.waterLevel += waterXHit * rainFactor * ssm.stats.waterReception * Time.deltaTime;
 
         float actualUpTh = waterTH.up, actualDownTh = waterTH.down;
         if (ssm.stats.temperature > tempTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA
@@ -89,19 +89,20 @@ public class WaterManager : MonoBehaviour
         {
             if (ssm.stats.waterLevel >= actualUpTh)
             {
-                ssm.stats.StateChange(PlantState.DROWNING);
+                ssm.stats.StateChange(PlantState.DROWNING, true);
                 waterOff = true;
             }
             else if (ssm.stats.waterLevel <= actualDownTh)
             {
-                ssm.stats.StateChange(PlantState.THIRSTY);
+                ssm.stats.StateChange(PlantState.THIRSTY, true);
                 waterOff = true;
             }
         }
-        else if (ssm.stats.waterLevel < actualUpTh || ssm.stats.waterLevel > actualDownTh)
+        else if (ssm.stats.waterLevel < actualUpTh && ssm.stats.waterLevel > actualDownTh)
         {
             waterOff = false;
-            ssm.stats.StateChange();
+            ssm.stats.StateChange(PlantState.DROWNING, false);
+            ssm.stats.StateChange(PlantState.THIRSTY, false);
         }
     }
 }

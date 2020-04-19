@@ -54,19 +54,20 @@ public class SunManager : MonoBehaviour
         {
             if (ssm.stats.temperature >= actualUpTh)
             {
-                ssm.stats.StateChange(PlantState.DRY);
+                ssm.stats.StateChange(PlantState.DRY, true);
                 temperatureOff = true;
             }
             else if (ssm.stats.temperature <= actualDownTh)
             {
-                ssm.stats.StateChange(PlantState.FROZEN);
+                ssm.stats.StateChange(PlantState.FROZEN, true);
                 temperatureOff = true;
             }
         }
-        else if (ssm.stats.temperature < actualUpTh || ssm.stats.temperature > actualDownTh)
+        else if (ssm.stats.temperature < actualUpTh && ssm.stats.temperature > actualDownTh)
         {
             temperatureOff = false;
-            ssm.stats.StateChange();
+            ssm.stats.StateChange(PlantState.DRY, false);
+            ssm.stats.StateChange(PlantState.FROZEN, false);
         }
     }
 }
