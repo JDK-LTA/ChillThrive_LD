@@ -147,6 +147,8 @@ public class ShakeCloud : MonoBehaviour
         WaterManager.Instance.cloudsRaining.Add(this);
 
         createdRP = Instantiate(rainParticles, transform);
+        createdRP.transform.localPosition = new Vector3(createdRP.transform.localPosition.x,
+            createdRP.transform.localPosition.y - 0.08f, createdRP.transform.localPosition.z); 
 
         stopDragging = true;
         isRaining = true;

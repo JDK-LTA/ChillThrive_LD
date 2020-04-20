@@ -19,6 +19,7 @@ public class WindManager : MonoBehaviour
 
     float auxTimerAD = 0;
 
+    public ParticleSystem windPS;
     private void Start()
     {
         originalAirXHit = airXHit;
@@ -38,6 +39,11 @@ public class WindManager : MonoBehaviour
             //}
         }
         airFactor = Mathf.Clamp(airFactor, 0f, 1f);
+
+        ParticleSystem.MainModule main = windPS.main;
+        ParticleSystem.EmissionModule emission = windPS.emission;
+        main.simulationSpeed = 1f + airFactor * 2f;
+        emission.rateOverTime = airFactor * 10f;
     }
 
     public void UpdateAirFactor(float value)

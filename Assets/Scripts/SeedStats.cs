@@ -123,9 +123,12 @@ public class SeedStats : MonoBehaviour
 
     public void UpdateBars()
     {
-        waterBar.fillAmount = waterLevel / 100f;
-        thermometer.fillAmount = (temperature + 10f) / 50f; //De -10 a 40 grados centígrados
-        airBar.fillAmount = airLevel / 100f;
+        if (waterBar != null && thermometer != null && airBar != null)
+        {
+            waterBar.fillAmount = waterLevel / 100f;
+            thermometer.fillAmount = (temperature + 10f) / 50f; //De -10 a 40 grados centígrados
+            airBar.fillAmount = airLevel / 100f;
+        }
     }
 
     public void Dead()
