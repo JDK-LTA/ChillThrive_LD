@@ -23,23 +23,6 @@ public class WaterManager : MonoBehaviour
 
     bool waterOff = false;
 
-    public void UpdateWaterFactor(float value)
-    {
-        value += value * rainFactor;
-        waterFactor = value;
-    }
-
-    //TODO: ARREGLAR EL CLOUD FACTOR
-    public void UpdateCloudFactor(float value)
-    {
-        cloudFactor = value;
-        //if (cloudFactor > rainThreshold)
-        //{
-        //    isRaining = true;
-        //    rainFactor = Mathf.Lerp(0, 1, (cloudFactor - rainThreshold) / (1 - rainThreshold));
-        //}
-    }
-
     private void Update()
     {
         rainFactor = 0;

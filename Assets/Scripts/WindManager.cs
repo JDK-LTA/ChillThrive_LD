@@ -15,7 +15,7 @@ public class WindManager : MonoBehaviour
     float originalAirXHit;
     public float airVarianceWithTemperature = 0.05f;
     public float airDecreaser = 0.01f;
-    public float airDecreaserTimer = 0.25f;
+    //public float airDecreaserTimer = 0.25f;
 
     float auxTimerAD = 0;
 
@@ -26,16 +26,18 @@ public class WindManager : MonoBehaviour
     void Update()
     {
         airXHit = originalAirXHit + -airVarianceWithTemperature * ((SunManager.Instance.environmentTemperature - 15) / 25);
+
         if (airFactor > 0)
         {
-            auxTimerAD += Time.deltaTime;
-            if (auxTimerAD > airDecreaserTimer)
-            {
-                airFactor -= airDecreaser;
-                auxTimerAD = 0;
-            }
+            airFactor -= airDecreaser * Time.deltaTime;
+            //auxTimerAD += Time.deltaTime;
+            //if (auxTimerAD > airDecreaserTimer)
+            //{
+            //    airFactor -= airDecreaser;
+            //    auxTimerAD = 0;
+            //}
         }
-        Mathf.Clamp(airFactor, 0f, 1f);
+        airFactor = Mathf.Clamp(airFactor, 0f, 1f);
     }
 
     public void UpdateAirFactor(float value)

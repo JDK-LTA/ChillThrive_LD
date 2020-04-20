@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2850575212721256669}
   - component: {fileID: 2850575212721256668}
   - component: {fileID: 2850575212721256671}
-  - component: {fileID: 2850575212721256642}
   - component: {fileID: 8786746631188509244}
+  - component: {fileID: 4374989615081466569}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Cloud
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 541ff6dd760dd7744902171502803177, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,23 +96,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rainPower: 0.5
+  rainDecreaser: 0.05
+  cloudsInContact: []
   colliderCount: 0
---- !u!58 &2850575212721256642
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2850575212721256670}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
+  auxBool: 0
+  rainParticles: {fileID: 191326, guid: b046278bb9b6e104790392b566667ba5, type: 3}
 --- !u!50 &8786746631188509244
 Rigidbody2D:
   serializedVersion: 4
@@ -134,3 +122,56 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &4374989615081466569
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850575212721256670}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.29142857, y: 0.17428571}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.14571428, y: -0.022857143}
+      - {x: 0.13857143, y: -0.012857143}
+      - {x: 0.14571428, y: 0.008571428}
+      - {x: 0.12714286, y: 0.04}
+      - {x: 0.10428571, y: 0.048571426}
+      - {x: 0.08857143, y: 0.07857143}
+      - {x: 0.04142857, y: 0.08571429}
+      - {x: 0.03142857, y: 0.07714286}
+      - {x: 0.004285714, y: 0.08142857}
+      - {x: -0.004285714, y: 0.087142855}
+      - {x: -0.048571426, y: 0.087142855}
+      - {x: -0.07, y: 0.068571426}
+      - {x: -0.09428571, y: 0.055714287}
+      - {x: -0.11285714, y: 0.04142857}
+      - {x: -0.14, y: 0.0028571428}
+      - {x: -0.14571428, y: -0.01}
+      - {x: -0.14571428, y: -0.045714285}
+      - {x: -0.12857142, y: -0.065714285}
+      - {x: -0.11285714, y: -0.07571428}
+      - {x: -0.07142857, y: -0.074285716}
+      - {x: -0.047142856, y: -0.087142855}
+      - {x: -0.022857143, y: -0.087142855}
+      - {x: -0.004285714, y: -0.07714286}
+      - {x: 0.015714286, y: -0.087142855}
+      - {x: 0.089999996, y: -0.087142855}
+      - {x: 0.12285714, y: -0.08}
+      - {x: 0.14428571, y: -0.068571426}
+      - {x: 0.14571428, y: -0.057142857}
