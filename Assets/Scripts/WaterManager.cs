@@ -28,9 +28,9 @@ public class WaterManager : MonoBehaviour
         rainFactor = 0;
         for (int i = 0; i < cloudsRaining.Count; i++)
         {
-            rainFactor += cloudsRaining[i].rainPower;
-            rainFactor = Mathf.Clamp(rainFactor, 0f, 1f);
+            rainFactor += cloudsRaining[i].rainPower;            
         }
+        rainFactor = Mathf.Clamp(rainFactor, 0f, 1f);
     }
 
     public void UpdateWaterStat(Threshold tempTH, Threshold waterTH, Threshold airTH)
