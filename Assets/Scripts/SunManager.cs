@@ -30,14 +30,14 @@ public class SunManager : MonoBehaviour
         }
         else if ((float)dragAstro.position / (float)sunPath.numOfPoints < 0.5f)
         {
-            tempFactor =  dayOrNight * Mathf.Lerp(0.1f, 1, (float)dragAstro.position / ((float)sunPath.numOfPoints / 2));
+            tempFactor = dayOrNight * Mathf.Lerp(0.1f, 1, (float)dragAstro.position / ((float)sunPath.numOfPoints / 2));
         }
         else
         {
             tempFactor = dayOrNight * Mathf.Lerp(1, 0.1f, (((float)dragAstro.position / ((float)sunPath.numOfPoints / 2)) - 1));
         }
 
-        tempFactor *= SeedStateManager.Instance.isDay ? 
+        tempFactor *= SeedStateManager.Instance.isDay ?
             1f - (float)WaterManager.Instance.cloudsAlive.Count / (float)numOfCloudsToBlockSun :
             1f + (float)WaterManager.Instance.cloudsAlive.Count / (float)numOfCloudsToBlockSun; // OJO CUIDAO QUE EL CLOUDFACTOR ESTA MAL POR AHORA
     }
@@ -47,7 +47,7 @@ public class SunManager : MonoBehaviour
     {
         SeedStateManager ssm = SeedStateManager.Instance;
         environmentTemperature += tempXHit * tempFactor * Time.deltaTime;
-        ssm.stats.temperature = Mathf.Lerp(ssm.stats.temperature, environmentTemperature, ssm.stats.temperatureReception);
+        ssm.stats.temperature = Mathf.Lerp(ssm.stats.temperature, environmentTemperature, ssm.stats.temperatureReception / 100);
 
         float actualUpTh = tempTH.up, actualDownTh = tempTH.down;
         if (ssm.stats.airLevel > airTH.up) // CAMBIOS SEGUN OTROS PARAMETROS COMO VIENTO O AGUA

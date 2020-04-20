@@ -70,16 +70,21 @@ public class SeedStats : MonoBehaviour
             airReception -= waterLevel / 500;
         }
 
-        waterReception =  1 + ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
+        waterReception = 1 + ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
         if (airLevel > 50)
         {
             waterReception -= airLevel / 500;
         }
 
-        temperatureReception = 1 - (waterLevel / 400 + airLevel / 400);
+        temperatureReception = 1 - (waterLevel / 200 + airLevel / 200);
 
-        airDecreaseOverTime = originalADOT * ((temperature - temperatureThresholdEffectOnAirReception) / 50f);
-        waterDecreaseOverTime = originalWDOT * ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
+        //SI TEMPERATURA == 35 -> DECREASERS == 150% ORIGINAL || SI TEMP == -5 -> DECREASERS == 50% ORIGINAL
+        float t = Mathf.Clamp(temperature, -5, 35);
+        t = (t + 5) / 40;
+        airDecreaseOverTime = Mathf.Lerp(originalADOT * 0.5f, originalADOT * 1.5f, t);
+        waterDecreaseOverTime = Mathf.Lerp(originalWDOT * 0.5f, originalWDOT * 1.5f, t);
+        //airDecreaseOverTime = originalADOT + originalADOT * ((temperature - temperatureThresholdEffectOnAirReception) / 50f);
+        //waterDecreaseOverTime = originalWDOT + originalWDOT * ((temperature - temperatureThresholdEffectOnWaterReception) / 50f);
     }
 
     public void StateChange(PlantState state, bool add)

@@ -22,6 +22,7 @@ public class ShakeCloud : MonoBehaviour
     public List<GameObject> cloudsInContact = new List<GameObject>();
     public int colliderCount = 0;
     bool contacted = false;
+    [HideInInspector] public bool auxBool = false;
 
     private void OnMouseDown()
     {
@@ -113,17 +114,21 @@ public class ShakeCloud : MonoBehaviour
             Debug.Log(aux);
             for (int i = cloudsInContact.Count - 1; i >= 0; i--)
             {
-                if (i != aux)
+                if (!cloudsInContact[i].GetComponent<ShakeCloud>().auxBool)
                 {
-                    Debug.Log("asd");
-                    Destroy(cloudsInContact[i].gameObject);
+                    if (i != aux)
+                    {
+                        Debug.Log("asd");
+                        Destroy(cloudsInContact[i].gameObject);
+                    }
+                    else
+                    {
+                        cloudsInContact[i].GetComponent<ShakeCloud>().StartRaining();
+                        cloudsInContact[i].GetComponent<Rigidbody2D>().Sleep();
+                        cloudsInContact[i].GetComponent<Collider2D>().enabled = false;
+                    }
                 }
-                else
-                {
-                    cloudsInContact[i].GetComponent<ShakeCloud>().StartRaining();
-                    cloudsInContact[i].GetComponent<Rigidbody2D>().Sleep();
-                    cloudsInContact[i].GetComponent<Collider2D>().enabled = false;
-                }
+                cloudsInContact[i].GetComponent<ShakeCloud>().auxBool = true;
             }
         }
     }
