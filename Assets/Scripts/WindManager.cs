@@ -35,7 +35,7 @@ public class WindManager : MonoBehaviour
                 auxTimerAD = 0;
             }
         }
-        Mathf.Clamp(airFactor, 0f, 1f);
+        airFactor = Mathf.Clamp(airFactor, 0f, 1f);
     }
 
     public void UpdateAirFactor(float value)
