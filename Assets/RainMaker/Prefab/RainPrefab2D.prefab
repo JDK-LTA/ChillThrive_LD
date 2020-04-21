@@ -14050,5 +14050,5 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 256
-  CollisionLifeTimeRain: 0.02
+  CollisionLifeTimeRain: 0.008
   RainMistCollisionMultiplier: 0.75

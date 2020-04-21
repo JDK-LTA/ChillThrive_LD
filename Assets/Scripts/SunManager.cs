@@ -12,6 +12,7 @@ public class SunManager : MonoBehaviour
     public DragSun dragSun;
     public DragSun dragMoon;
     DragSun dragAstro;
+    public SpriteRenderer background;
 
     public BezierPath sunPath;
     public float environmentTemperature = 15f; //De -10 a 40 grados centígrados
@@ -23,6 +24,7 @@ public class SunManager : MonoBehaviour
     {
         float dayOrNight = SeedStateManager.Instance.isDay ? 1 : -1;
         dragAstro = SeedStateManager.Instance.isDay ? dragSun : dragMoon;
+        background.color = SeedStateManager.Instance.isDay ? new Color32(255, 255, 255, 255) : new Color32(0, 35, 128, 255);
 
         if ((float)dragAstro.position / (float)sunPath.numOfPoints < 0.05f || (float)dragAstro.position / (float)sunPath.numOfPoints > 0.95f)
         {

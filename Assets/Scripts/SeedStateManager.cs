@@ -33,10 +33,10 @@ public class SeedStateManager : MonoBehaviour
     private void Update()
     {
         WaterManager.Instance.UpdateWaterStat(tempTH, waterTH, airTH);
-        if (stats.growthLevel >= 1)
-        {
+        //if (stats.growthLevel >= 1)
+        //{
             SunManager.Instance.UpdateTempStat(tempTH, waterTH, airTH);
             WindManager.Instance.UpdateAirStat(tempTH, waterTH, airTH);
-        }
+        //}
     }
 }

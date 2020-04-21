@@ -18,7 +18,7 @@ public class SeedStats : MonoBehaviour
     public float temperatureThresholdEffectOnWaterReception = 15f;
     public float waterDecreaseOverTime = 0.1f, airDecreaseOverTime = 0.1f;
     float originalWDOT, originalADOT;
-    public Image waterBar, thermometer, airBar;
+    public Image waterBar, thermometer, airBar, fire, snow;
 
     public float growth = 0f;
     public float growthFactor = 1f;
@@ -27,38 +27,83 @@ public class SeedStats : MonoBehaviour
     public int growthLevel = 0;
     public float[] growthCheckpoints;
 
+    public Sprite[] stages;
+    SpriteRenderer sr;
+    bool end = false;
+    float endingWater = 50f, endingAir = 50f, endingTemp = 15f;
+
     private void Start()
     {
         originalWDOT = waterDecreaseOverTime;
         originalADOT = airDecreaseOverTime;
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = stages[growthLevel];
     }
+
     private void Update()
     {
-        waterLevel -= Time.deltaTime * waterDecreaseOverTime;
-
-        if (growthLevel >= 1)
+        if (end)
         {
+            waterLevel = endingWater;
+            airLevel = endingAir;
+            temperature = endingTemp;
+        }
+        else
+        {
+            waterLevel -= Time.deltaTime * waterDecreaseOverTime;
+
+            //if (growthLevel >= 1)
+            //{
             airLevel -= Time.deltaTime * airDecreaseOverTime;
-        }
+            //}
 
-        if (waterLevel <= 0 || waterLevel >= 100 || temperature <= -10 || temperature >= 40 || airLevel <= 0 || airLevel >= 100)
-        {
-            Dead();
-        }
-
-
-        growth += growthFactor * Time.deltaTime;
-        if (growthLevel < growthCheckpoints.Length)
-        {
-            if (growth > growthCheckpoints[growthLevel])
+            if (waterLevel <= 0)
             {
-                growthLevel++;
-                // NUEVO NIVEL
+                Dead(PlantState.THIRSTY);
             }
-        }
+            else if (waterLevel >= 100)
+            {
+                Dead(PlantState.DROWNING);
+            }
+            if (temperature <= -10)
+            {
+                Dead(PlantState.FROZEN);
+            }
+            else if (temperature >= 40)
+            {
+                Dead(PlantState.DRY);
+            }
+            if (airLevel <= 0)
+            {
+                Dead(PlantState.CHOKING);
+            }
+            else if (airLevel >= 100)
+            {
+                Dead(PlantState.ANXIOUS);
+            }
 
-        UpdateReceptionsAndWastes();
-        UpdateBars();
+
+            growth += growthFactor * Time.deltaTime;
+            if (growthLevel < growthCheckpoints.Length)
+            {
+                if (growth > growthCheckpoints[growthLevel])
+                {
+                    growthLevel++;
+                    if (growthLevel < growthCheckpoints.Length)
+                    {
+                        sr.sprite = stages[growthLevel];
+                    }
+                    else
+                    {
+                        Win();
+                    }
+                }
+            }
+
+            UpdateReceptionsAndWastes();
+            UpdateBars();
+
+        }
     }
 
     public void UpdateReceptionsAndWastes()
@@ -129,11 +174,71 @@ public class SeedStats : MonoBehaviour
             thermometer.fillAmount = (temperature + 10f) / 50f; //De -10 a 40 grados centígrados
             airBar.fillAmount = airLevel / 100f;
         }
+        if (temperature < 0)
+        {
+            snow.gameObject.SetActive(true);
+        }
+        else if (temperature > 30)
+        {
+            fire.gameObject.SetActive(true);
+        }
+        else
+        {
+            snow.gameObject.SetActive(false);
+            fire.gameObject.SetActive(false);
+        }
+
     }
 
+
+    public MainMenuManager menuThing;
     public void Dead()
     {
-        Debug.Log("Plant is dead");
+        menuThing.gameObject.SetActive(true);
+        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT DIED OF MANY CAUSES...");
+        end = true;
+    }
+    public void Dead(PlantState state)
+    {
+        string aa = "";
+        switch (state)
+        {
+            case PlantState.HEALTHY:
+                break;
+            case PlantState.DROWNING:
+                aa = "DROWNED";
+                break;
+            case PlantState.THIRSTY:
+                aa = "WAS THIRSTY";
+                break;
+            case PlantState.DRY:
+                aa = "DRIED OUT";
+                break;
+            case PlantState.FROZEN:
+                aa = "FROZE TO DEATH";
+                break;
+            case PlantState.ANXIOUS:
+                aa = "HYPERVENTILATED";
+                break;
+            case PlantState.CHOKING:
+                aa = "SUFFOCATED";
+                break;
+            default:
+                break;
+        }
+        menuThing.gameObject.SetActive(true);
+        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT DIED. IT " + aa + ":C");
+        end = true;
+    }
+
+    public void Win()
+    {
+        menuThing.gameObject.SetActive(true);
+        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT IS ALIVE AND HEALTHY!!!");
+        endingAir = airLevel;
+        endingWater = waterLevel;
+        endingTemp = temperature;
+        end = true;
     }
 }
 

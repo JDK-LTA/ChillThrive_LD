@@ -91,7 +91,6 @@ public class ShakeCloud : MonoBehaviour
             float mouseXAxis = Input.GetAxis("Mouse X");
             if (mouseXAxis - oldMouseAxis > 1f)
             {
-                Debug.Log("Shaken");
                 timesShaken++;
                 if (timesShaken >= timesToBeShaken)
                 {
@@ -143,7 +142,6 @@ public class ShakeCloud : MonoBehaviour
     GameObject createdRP;
     public void StartRaining()
     {
-        Debug.Log("It's raining");
         WaterManager.Instance.cloudsRaining.Add(this);
 
         createdRP = Instantiate(rainParticles, transform);
