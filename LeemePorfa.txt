@@ -88,7 +88,7 @@ TAREAS:
 * feedback por encima o por debajo del threshold de lluvia y viento
 * menos absorcion si no llueve encima
 * música en el menú
-
+* gif para la página de itchio
 
 
 
