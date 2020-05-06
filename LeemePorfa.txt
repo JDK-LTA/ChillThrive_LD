@@ -74,13 +74,20 @@ TAREAS:
 ♥* ciclo día-noche
 ♥* covarianzas entorno
 ♥* covarianzas parámetros planta
-* arte
+♥* arte
 ♥* sonido
-* feedback visual para indicar si hay ♥lluvia, viento, día/noche, etc
+♥* feedback visual para indicar si hay ♥lluvia, ♥viento, ♥día/noche, etc
 ♥* sistema de niveles seed
-* scena menu/die/win/credits/etc
-* UI
+♥* scena menu/die/win/credits/etc
 * feedback visual del estado de la planta? seca, ahogándose, congelándose, etc
+* arte: molinillo, "tutorial", help button, barra de progreso del árbol
+* que el tutorial se muestre también 3 secs después de empezar el juego 
+* editar el control del viento
+* buil para linux
+* mejorar paneles win/lose
+* feedback por encima o por debajo del threshold de lluvia y viento
+* menos absorcion si no llueve encima
+* música en el menú
 
 
 

@@ -15,7 +15,7 @@ public class BlowWind : MonoBehaviour
     private void OnMouseDown()
     {
         isDragging = true;
-        lastMousePos = Input.mousePosition;
+        lastMousePos = Input.mousePosition; //todo que solo cuente el drag si ha salido del button
     }
     private void OnMouseUp()
     {
@@ -62,7 +62,7 @@ public class BlowWind : MonoBehaviour
         {
             power = maxPower;
         }
-        WindManager.Instance.airFactor += (power/2) / maxPower;
+        WindManager.Instance.airFactor += (power*0.7f) / maxPower;
         if (WindManager.Instance.airFactor > 1)
         {
             WindManager.Instance.airFactor = 1;
