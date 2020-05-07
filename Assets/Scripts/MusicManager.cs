@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -20,6 +21,15 @@ public class MusicManager : MonoBehaviour
 
     int onlyRainPhase = 0;
 
+    public static MusicManager instance;
+
+    public virtual void Awake()
+    {
+        if (!instance) instance = this;
+        else Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         dayNight = transform.Find("day_night").GetComponents<AudioSource>();
@@ -30,67 +40,78 @@ public class MusicManager : MonoBehaviour
     void Update()
     {
         currentTimeToNextBar -= Time.deltaTime;
+
         if (currentTimeToNextBar <= 0)
         {
             currentTimeToNextBar = BASE_DURATION;
 
-            //day-night base
-            bool isDay = SeedStateManager.Instance.isDay;
-            if (isDay) dayNight[0].PlayOneShot(dayBaseAudio);
-            else dayNight[0].PlayOneShot(nightBaseAudio);
-
-            //motives
-            bool isRaining = (WaterManager.Instance.rainFactor > 0);
-            bool isWinding = (WindManager.Instance.airFactor > 0);
-
-            if (!isRaining || isWinding) onlyRainPhase = 0;
-
-            if (isRaining && isWinding)
-            {
-                wind[0].PlayOneShot(windAudio[Random.Range(0, windAudio.Length)]);
-                rain[0].PlayOneShot(rainAudio[0]);
+            //IN MENU
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {                
+                dayNight[0].PlayOneShot(nightBaseAudio);
             }
-            else if (isRaining)
-            {
-                rain[0].PlayOneShot(rainAudio[0]);
 
-                if (onlyRainPhase > 0)
+            //IN GAMEPLAY   
+            else if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                //day-night 
+                bool isDay = SeedStateManager.Instance.isDay;
+                if (isDay) dayNight[0].PlayOneShot(dayBaseAudio);
+                else dayNight[0].PlayOneShot(nightBaseAudio);
+
+                //motives
+                bool isRaining = (WaterManager.Instance.rainFactor > 0);
+                bool isWinding = (WindManager.Instance.airFactor > 0);
+
+                if (!isRaining || isWinding) onlyRainPhase = 0;
+
+                if (isRaining && isWinding)
                 {
-                    rain[1].PlayOneShot(rainAudio[1]);
+                    wind[0].PlayOneShot(windAudio[Random.Range(0, windAudio.Length)]);
+                    rain[0].PlayOneShot(rainAudio[0]);
                 }
-                if (onlyRainPhase > 1)
+                else if (isRaining)
+                {
+                    rain[0].PlayOneShot(rainAudio[0]);
+
+                    if (onlyRainPhase > 0)
+                    {
+                        rain[1].PlayOneShot(rainAudio[1]);
+                    }
+                    if (onlyRainPhase > 1)
+                    {
+                        int rand = Random.Range(0, 3);
+
+                        switch (rand)
+                        {
+                            case 0: //only medium
+                                rain[2].PlayOneShot(rainAudio[Random.Range(2, 4)]);
+                                break;
+                            case 1: //only high
+                                rain[3].PlayOneShot(rainAudio[4]);
+                                break;
+                            default: //medium and high
+                                rain[2].PlayOneShot(rainAudio[3]);
+                                rain[3].PlayOneShot(rainAudio[4]);
+                                break;
+                        }
+                    }
+                    ++onlyRainPhase;
+                }
+                else if (isWinding)
                 {
                     int rand = Random.Range(0, 3);
-
-                    switch (rand)
-                    {
-                        case 0: //only medium
-                            rain[2].PlayOneShot(rainAudio[Random.Range(2, 4)]);
-                            break;
-                        case 1: //only high
-                            rain[3].PlayOneShot(rainAudio[4]);
-                            break;
-                        default: //medium and high
-                            rain[2].PlayOneShot(rainAudio[3]);
-                            rain[3].PlayOneShot(rainAudio[4]);
-                            break;
-                    }
+                    if (rand > 0) wind[0].PlayOneShot(windAudio[0]);
+                    if (rand < 2) wind[1].PlayOneShot(windAudio[1]);
                 }
-                ++onlyRainPhase;
-            }
-            else if (isWinding)
-            {
-                int rand = Random.Range(0, 3);
-                if (rand > 0) wind[0].PlayOneShot(windAudio[0]);
-                if (rand < 2) wind[1].PlayOneShot(windAudio[1]);
-            }
-            else if (!dayNight[1].isPlaying)
-            {
-                AudioClip[] motives = (isDay) ? dayMotivesAudio : nightMotivesAudio;
-                int rand = Random.Range(0, motives.Length);
-                if (rand < motives.Length)
+                else if (!dayNight[1].isPlaying)
                 {
-                    dayNight[1].PlayOneShot(motives[rand]);
+                    AudioClip[] motives = (isDay) ? dayMotivesAudio : nightMotivesAudio;
+                    int rand = Random.Range(0, motives.Length);
+                    if (rand < motives.Length)
+                    {
+                        dayNight[1].PlayOneShot(motives[rand]);
+                    }
                 }
             }
         }
