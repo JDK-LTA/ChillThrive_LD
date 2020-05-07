@@ -28,7 +28,9 @@ public class WaterManager : MonoBehaviour
         rainFactor = 0;
         for (int i = 0; i < cloudsRaining.Count; i++)
         {
-            rainFactor += cloudsRaining[i].rainPower;            
+            //rainFactor += cloudsRaining[i].rainPower;  
+            float pos = 1 - Mathf.Abs(cloudsRaining[i].gameObject.transform.position.x) * 0.1f; //todo depending on the screen resolution!
+            rainFactor += Mathf.Lerp(0.1f, 0.3f, pos);
         }
         rainFactor = Mathf.Clamp(rainFactor, 0f, 1f);
     }

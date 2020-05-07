@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShakeCloud : MonoBehaviour
 {
     public float speed;
-    public float rainPower = 0.5f;
+    public float rainPower = 0.5f; //rain that is left in the cloud
 
     private Vector3 mOffset;
     bool isDragged = false;
