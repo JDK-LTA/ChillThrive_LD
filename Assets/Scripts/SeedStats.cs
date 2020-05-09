@@ -195,7 +195,7 @@ public class SeedStats : MonoBehaviour
     public void Dead()
     {
         menuThing.gameObject.SetActive(true);
-        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT DIED OF MANY CAUSES...");
+        menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant died because all the parameters were below or over the thresholds :C");
         end = true;
     }
     public void Dead(PlantState state)
@@ -209,7 +209,7 @@ public class SeedStats : MonoBehaviour
                 aa = "DROWNED";
                 break;
             case PlantState.THIRSTY:
-                aa = "WAS THIRSTY";
+                aa = "was THIRSTY";
                 break;
             case PlantState.DRY:
                 aa = "DRIED OUT";
@@ -227,14 +227,14 @@ public class SeedStats : MonoBehaviour
                 break;
         }
         menuThing.gameObject.SetActive(true);
-        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT DIED. IT " + aa + ":C");
+        menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant died.\nIt " + aa + " :C");
         end = true;
     }
 
     public void Win()
     {
         menuThing.gameObject.SetActive(true);
-        menuThing.ChangeText(menuThing.transform.Find("Panel").GetComponentInChildren<Text>(), "THE PLANT IS ALIVE AND HEALTHY!!!");
+        menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant is alive and healthy :) You managed to help it thrive ♥");
         endingAir = airLevel;
         endingWater = waterLevel;
         endingTemp = temperature;
