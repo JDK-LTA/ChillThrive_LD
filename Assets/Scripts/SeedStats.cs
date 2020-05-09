@@ -18,7 +18,8 @@ public class SeedStats : MonoBehaviour
     public float temperatureThresholdEffectOnWaterReception = 15f;
     public float waterDecreaseOverTime = 0.1f, airDecreaseOverTime = 0.1f;
     float originalWDOT, originalADOT;
-    public Image waterBar, thermometer, airBar, fire, snow;
+    public Image waterBar, thermometer, airBar;
+    public Image water0, water1, air0, air1, thermometer0, thermometer1;
 
     public float growth = 0f;
     public float growthFactor = 1f;
@@ -29,7 +30,7 @@ public class SeedStats : MonoBehaviour
 
     public Sprite[] stages;
     SpriteRenderer sr;
-    bool end = false;
+    public static bool end = false;
     float endingWater = 50f, endingAir = 50f, endingTemp = 15f;
 
     private void Start()
@@ -136,6 +137,17 @@ public class SeedStats : MonoBehaviour
     {
         if (add)
         {
+            //interface
+            switch (state)
+            {
+                case PlantState.FROZEN: thermometer0.gameObject.SetActive(true); break;
+                case PlantState.DRY: thermometer1.gameObject.SetActive(true); break;
+                case PlantState.THIRSTY: water0.gameObject.SetActive(true); break;
+                case PlantState.DROWNING: water1.gameObject.SetActive(true); break;
+                case PlantState.CHOKING: air0.gameObject.SetActive(true); break;
+                case PlantState.ANXIOUS: air1.gameObject.SetActive(true); break;
+            }
+
             if (mainState == PlantState.HEALTHY)
             {
                 growthFactor = growthFactorWhenIll;
@@ -150,9 +162,20 @@ public class SeedStats : MonoBehaviour
             {
                 Dead();
             }
+
         }
         else
         {
+            //interface 
+            switch (state)
+            {
+                case PlantState.FROZEN: thermometer0.gameObject.SetActive(false); break;
+                case PlantState.DRY: thermometer1.gameObject.SetActive(false); break;
+                case PlantState.THIRSTY: water0.gameObject.SetActive(false); break;
+                case PlantState.DROWNING: water1.gameObject.SetActive(false); break;
+                case PlantState.CHOKING: air0.gameObject.SetActive(false); break;
+                case PlantState.ANXIOUS: air1.gameObject.SetActive(false); break;
+            }
             if (mainState == state)
             {
                 mainState = secondaryState;
@@ -162,6 +185,7 @@ public class SeedStats : MonoBehaviour
             {
                 secondaryState = PlantState.HEALTHY;
             }
+
         }
 
     }
@@ -174,20 +198,6 @@ public class SeedStats : MonoBehaviour
             thermometer.fillAmount = (temperature + 10f) / 50f; //De -10 a 40 grados centígrados
             airBar.fillAmount = airLevel / 100f;
         }
-        if (temperature < 0)
-        {
-            snow.gameObject.SetActive(true);
-        }
-        else if (temperature > 30)
-        {
-            fire.gameObject.SetActive(true);
-        }
-        else
-        {
-            snow.gameObject.SetActive(false);
-            fire.gameObject.SetActive(false);
-        }
-
     }
 
 
