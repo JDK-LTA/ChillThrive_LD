@@ -3095,16 +3095,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
-      propertyPath: stages.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
       propertyPath: waterBar
       value: 
       objectReference: {fileID: 1768726065}
@@ -3120,94 +3110,9 @@ PrefabInstance:
       objectReference: {fileID: 1232719671}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
-      propertyPath: fire
+      propertyPath: water0
       value: 
-      objectReference: {fileID: 762492797}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: snow
-      value: 
-      objectReference: {fileID: 528010979}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: stages.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 5fb0f496c55906f4394673fc7001f164,
-        type: 3}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: stages.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 9c7136e4e9815b345b10a6681924bc5d,
-        type: 3}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: stages.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: c4d8a36a405e0fe4797452771d173a92,
-        type: 3}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: stages.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: f7642922c82e2064b94a65a7a14c563c,
-        type: 3}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: stages.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: d28da5cf7b86c0246bba5690d512ceb3,
-        type: 3}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthFactor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.data[3]
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.data[4]
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthFactorWhenIll
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthFactorWhenTwoIll
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.data[0]
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.data[1]
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthCheckpoints.Array.data[2]
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: growthLevel
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: menuThing
-      value: 
-      objectReference: {fileID: 760573545}
+      objectReference: {fileID: 832243079}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
       propertyPath: water1
@@ -3215,9 +3120,9 @@ PrefabInstance:
       objectReference: {fileID: 1239069649}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
-      propertyPath: water0
+      propertyPath: air0
       value: 
-      objectReference: {fileID: 832243079}
+      objectReference: {fileID: 153000532}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
       propertyPath: air1
@@ -3225,9 +3130,9 @@ PrefabInstance:
       objectReference: {fileID: 1436787906}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
-      propertyPath: air0
+      propertyPath: thermometer0
       value: 
-      objectReference: {fileID: 153000532}
+      objectReference: {fileID: 528010979}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
       propertyPath: thermometer1
@@ -3235,9 +3140,9 @@ PrefabInstance:
       objectReference: {fileID: 762492797}
     - target: {fileID: 2680100729520626352, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
-      propertyPath: thermometer0
+      propertyPath: menuThing
       value: 
-      objectReference: {fileID: 528010979}
+      objectReference: {fileID: 760573545}
     - target: {fileID: 2680100729520626353, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3292,47 +3197,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626353, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626353, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626353, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626354, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5fb0f496c55906f4394673fc7001f164,
-        type: 3}
-    - target: {fileID: 2680100729520626354, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626354, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626354, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2680100729520626354, guid: 12744f09ba5a28043a3f897563b15a3c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2680100729520626355, guid: 12744f09ba5a28043a3f897563b15a3c,
         type: 3}
