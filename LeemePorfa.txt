@@ -80,14 +80,19 @@ TAREAS:
 ♥* sistema de niveles seed
 ♥* scena menu/die/win/credits/etc
 * feedback visual del estado de la planta? seca, ahogándose, congelándose, etc
-* arte: molinillo, "tutorial", help button, barra de progreso del árbol
+* arte: 
+	♥molinillo
+	visual feedback thresholds
+	"tutorial"
+	help button
+	barra de progreso del árbol
 * que el tutorial se muestre también 3 secs después de empezar el juego 
-* editar el control del viento
+♥* editar el control del viento
 * buil para linux
-* mejorar paneles win/lose
-* feedback por encima o por debajo del threshold de lluvia y viento
-* menos absorcion si no llueve encima
-* música en el menú
+♥* mejorar paneles win/lose
+♥* feedback por encima o por debajo del threshold de lluvia y viento
+♥* menos absorcion si no llueve encima
+♥* música en el menú
 * gif para la página de itchio
 
 
