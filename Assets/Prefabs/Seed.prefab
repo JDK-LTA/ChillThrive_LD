@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2680100729520626355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.07, z: -2.074414}
-  m_LocalScale: {x: 8.7958765, y: 8.7958765, z: 8.7958765}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,6 +57,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -68,9 +69,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.90423965, a: 1}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 5fb0f496c55906f4394673fc7001f164, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,12 +108,27 @@ MonoBehaviour:
   waterBar: {fileID: 0}
   thermometer: {fileID: 0}
   airBar: {fileID: 0}
+  water0: {fileID: 0}
+  water1: {fileID: 0}
+  air0: {fileID: 0}
+  air1: {fileID: 0}
+  thermometer0: {fileID: 0}
+  thermometer1: {fileID: 0}
   growth: 0
-  growthFactor: 0
-  growthFactorWhenIll: 0
-  growthFactorWhenTwoIll: 0
+  growthFactor: 1
+  growthFactorWhenIll: 0.5
+  growthFactorWhenTwoIll: 0.25
   growthLevel: 0
   growthCheckpoints:
-  - 10
-  - 15
-  - 20
+  - 30
+  - 70
+  - 120
+  - 180
+  - 250
+  stages:
+  - {fileID: 21300000, guid: 5fb0f496c55906f4394673fc7001f164, type: 3}
+  - {fileID: 21300000, guid: 9c7136e4e9815b345b10a6681924bc5d, type: 3}
+  - {fileID: 21300000, guid: c4d8a36a405e0fe4797452771d173a92, type: 3}
+  - {fileID: 21300000, guid: f7642922c82e2064b94a65a7a14c563c, type: 3}
+  - {fileID: 21300000, guid: d28da5cf7b86c0246bba5690d512ceb3, type: 3}
+  menuThing: {fileID: 0}
