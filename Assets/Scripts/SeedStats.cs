@@ -30,8 +30,9 @@ public class SeedStats : MonoBehaviour
 
     public Sprite[] stages;
     SpriteRenderer sr;
-    public static bool stop = false;
+    [SerializeField] public static bool stop = false;
     float pauseWater, pauseAir, pauseTemp;
+    public GameObject helpButton;
 
     private void Start()
     {
@@ -40,10 +41,12 @@ public class SeedStats : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = stages[growthLevel];
         ChangeColorUI();
+        stop = false;
     }
 
     private void Update()
     {
+        Debug.Log(stop);
         if (stop)
         {
             waterLevel = pauseWater;
@@ -255,12 +258,14 @@ public class SeedStats : MonoBehaviour
         stop = true;
         pauseAir = airLevel;
         pauseWater = waterLevel;
-        pauseTemp = temperature;        
+        pauseTemp = temperature;
+        helpButton.SetActive(false);
     }
 
     public void RestartMeters()
     {
         stop = false;
+        helpButton.SetActive(true);
     }
 
     public void ChangeColorUI()
