@@ -14,6 +14,20 @@ public class BezierPath : MonoBehaviour
         FullUpdateCurve();
     }
 
+    public void ChangeColor(bool isDay)
+    {
+        if (isDay)
+        {
+            line.startColor = new Color32(255, 255, 255, 255);
+            line.endColor = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            line.startColor = new Color32(135, 104, 164, 255);
+            line.endColor = new Color32(135, 104, 164, 255);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

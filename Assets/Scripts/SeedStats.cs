@@ -18,7 +18,7 @@ public class SeedStats : MonoBehaviour
     public float temperatureThresholdEffectOnWaterReception = 15f;
     public float waterDecreaseOverTime = 0.1f, airDecreaseOverTime = 0.1f;
     float originalWDOT, originalADOT;
-    public Image waterBar, thermometer, airBar;
+    public Image waterBar, thermometer, airBar, waterIcon, airIcon, thermometerIcon;
     public Image water0, water1, air0, air1, thermometer0, thermometer1;
 
     public float growth = 0f;
@@ -46,7 +46,6 @@ public class SeedStats : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(stop);
         if (stop)
         {
             waterLevel = pauseWater;
@@ -270,13 +269,15 @@ public class SeedStats : MonoBehaviour
 
     public void ChangeColorUI()
     {
-        Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1, waterBar, airBar, thermometer };
+        Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1, waterBar, airBar, thermometer, waterIcon, airIcon, thermometerIcon };
         bool day = SeedStateManager.Instance.isDay;
 
         foreach (Image a in array)
         {
             a.GetComponent<ColorChanger>().Change(day);
         }
+
+        SunManager.Instance.sunPath.ChangeColor(day);
     }
 }
 
