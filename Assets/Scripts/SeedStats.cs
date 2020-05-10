@@ -39,6 +39,7 @@ public class SeedStats : MonoBehaviour
         originalADOT = airDecreaseOverTime;
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = stages[growthLevel];
+        ChangeColorUI();
     }
 
     private void Update()
@@ -137,6 +138,7 @@ public class SeedStats : MonoBehaviour
     {
         if (add)
         {
+            bool d = SeedStateManager.Instance.isDay;
             //interface
             switch (state)
             {
@@ -252,16 +254,12 @@ public class SeedStats : MonoBehaviour
     }
     public void ChangeColorUI()
     {
-        Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1 };
+        Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1, waterBar, airBar, thermometer };
         bool day = SeedStateManager.Instance.isDay;
 
         foreach (Image a in array)
         {
             a.GetComponent<ColorChanger>().Change(day);
-            if (a.GetComponentInChildren<ColorChanger>())
-            {
-                a.GetComponentInChildren<ColorChanger>().Change(day);
-            }
         }
     }
 }

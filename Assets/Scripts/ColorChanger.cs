@@ -12,5 +12,12 @@ public class ColorChanger : MonoBehaviour
     {
         if (isDay) GetComponent<Image>().color = duringDay;
         else GetComponent<Image>().color = duringNight;
+
+        if (transform.childCount>0)
+        {
+
+            if (isDay) transform.GetChild(0).GetComponent<Image>().color = duringDay;
+            else transform.GetChild(0).GetComponent<Image>().color = duringNight;
+        }
     }
 }
