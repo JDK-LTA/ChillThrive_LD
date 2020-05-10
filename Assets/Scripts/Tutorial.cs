@@ -5,7 +5,8 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     public GameObject TutorialPanel, Button;
-    bool active;
+    public SpriteRenderer windButton;
+    public static bool active;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class Tutorial : MonoBehaviour
         active = true;
         TutorialPanel.SetActive(true);
         Button.SetActive(false);
+        windButton.color = new Color(1, 1, 1, 1);
         SeedStateManager.Instance.stats.StopMeters();
     }
 
@@ -41,6 +43,7 @@ public class Tutorial : MonoBehaviour
         active = false;
         TutorialPanel.SetActive(false);
         Button.SetActive(true);
+        windButton.color = new Color(1, 1, 1, 0);
         SeedStateManager.Instance.stats.RestartMeters();
     }
 

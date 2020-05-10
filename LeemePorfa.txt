@@ -80,14 +80,14 @@ TAREAS:
 ♥* sistema de niveles seed
 ♥* scena menu/die/win/credits/etc
 * feedback visual del estado de la planta? seca, ahogándose, congelándose, etc
-* arte: 
+♥* arte: 
 	♥molinillo
 	♥visual feedback thresholds
 	♥"tutorial"
 	♥help button
 	♥barra de progreso del árbol
-* programar tutorial. que el tutorial se muestre también 3 secs después de empezar el juego 
-* programar barra de progreso del árbol
+♥* programar tutorial. que el tutorial se muestre también 3 secs después de empezar el juego 
+♥* programar barra de progreso del árbol
 ♥* editar el control del viento
 * buil para linux
 ♥* mejorar paneles win/lose

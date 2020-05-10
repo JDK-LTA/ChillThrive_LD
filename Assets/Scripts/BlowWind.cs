@@ -33,7 +33,7 @@ public class BlowWind : MonoBehaviour
             alreadyCalculated = false;
             toRight = false;
             diffTime = 0;
-            buttonBG.color = new Color(1, 1, 1, 0);
+            if (!Tutorial.active) buttonBG.color = new Color(1, 1, 1, 0);
         }
     }
 
