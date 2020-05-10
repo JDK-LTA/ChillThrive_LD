@@ -33,7 +33,7 @@ public class Tutorial : MonoBehaviour
     {
         active = true;
         TutorialPanel.SetActive(true);
-        Button.SetActive(false);
+        //Button.SetActive(false);
         windButton.color = new Color(1, 1, 1, 1);
         SeedStateManager.Instance.stats.StopMeters();
     }
@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour
     {
         active = false;
         TutorialPanel.SetActive(false);
-        Button.SetActive(true);
+        //Button.SetActive(true);
         windButton.color = new Color(1, 1, 1, 0);
         SeedStateManager.Instance.stats.RestartMeters();
     }
