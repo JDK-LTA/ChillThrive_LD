@@ -32,7 +32,7 @@ public class SeedStateManager : MonoBehaviour
     float auxTimerAD;
     private void Update()
     {
-        if (!SeedStats.end)
+        if (!SeedStats.stop)
         {
             WaterManager.Instance.UpdateWaterStat(tempTH, waterTH, airTH);
             SunManager.Instance.UpdateTempStat(tempTH, waterTH, airTH);

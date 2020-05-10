@@ -30,8 +30,8 @@ public class SeedStats : MonoBehaviour
 
     public Sprite[] stages;
     SpriteRenderer sr;
-    public static bool end = false;
-    float endingWater = 50f, endingAir = 50f, endingTemp = 15f;
+    public static bool stop = false;
+    float pauseWater, pauseAir, pauseTemp;
 
     private void Start()
     {
@@ -44,11 +44,11 @@ public class SeedStats : MonoBehaviour
 
     private void Update()
     {
-        if (end)
+        if (stop)
         {
-            waterLevel = endingWater;
-            airLevel = endingAir;
-            temperature = endingTemp;
+            waterLevel = pauseWater;
+            airLevel = pauseAir;
+            temperature = pauseTemp;
         }
         else
         {
@@ -208,7 +208,7 @@ public class SeedStats : MonoBehaviour
     {
         menuThing.gameObject.SetActive(true);
         menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant died because all the parameters were below or over the thresholds :C");
-        end = true;
+        StopMeters();
     }
     public void Dead(PlantState state)
     {
@@ -240,18 +240,29 @@ public class SeedStats : MonoBehaviour
         }
         menuThing.gameObject.SetActive(true);
         menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant died.\nIt " + aa + " :C");
-        end = true;
+        StopMeters();
     }
 
     public void Win()
     {
         menuThing.gameObject.SetActive(true);
         menuThing.ChangeText(menuThing.transform.Find("Text").GetComponent<Text>(), "The plant is alive and healthy :) You managed to help it thrive ♥");
-        endingAir = airLevel;
-        endingWater = waterLevel;
-        endingTemp = temperature;
-        end = true;
+        StopMeters();
     }
+
+    public void StopMeters()
+    {
+        stop = true;
+        pauseAir = airLevel;
+        pauseWater = waterLevel;
+        pauseTemp = temperature;        
+    }
+
+    public void RestartMeters()
+    {
+        stop = false;
+    }
+
     public void ChangeColorUI()
     {
         Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1, waterBar, airBar, thermometer };

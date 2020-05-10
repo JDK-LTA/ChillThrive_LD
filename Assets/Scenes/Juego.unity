@@ -1075,7 +1075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.11100001, y: 0.73711115}
   m_AnchorMax: {x: 0.18279167, y: 0.97400004}
-  m_AnchoredPosition: {x: 35, y: -21.100006}
+  m_AnchoredPosition: {x: 34.999985, y: -21.099976}
   m_SizeDelta: {x: -51, y: -71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &413872144
@@ -2053,7 +2053,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.019875001, y: 0.7981852}
   m_AnchorMax: {x: 0.09739584, y: 0.97400004}
-  m_AnchoredPosition: {x: 38.1, y: -20.4}
+  m_AnchoredPosition: {x: 38.099976, y: -20.400024}
   m_SizeDelta: {x: 153, y: 177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &831991675
@@ -3831,6 +3831,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1846316368, guid: daa2333185402594b86696176365094b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846316368, guid: daa2333185402594b86696176365094b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846316368, guid: daa2333185402594b86696176365094b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7043520492200296261, guid: daa2333185402594b86696176365094b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3940,11 +3952,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7043520492770125104, guid: daa2333185402594b86696176365094b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.6499901
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daa2333185402594b86696176365094b, type: 3}
