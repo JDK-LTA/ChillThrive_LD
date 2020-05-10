@@ -250,6 +250,20 @@ public class SeedStats : MonoBehaviour
         endingTemp = temperature;
         end = true;
     }
+    public void ChangeColorUI()
+    {
+        Image[] array = { water0, water1, air0, air1, thermometer0, thermometer1 };
+        bool day = SeedStateManager.Instance.isDay;
+
+        foreach (Image a in array)
+        {
+            a.GetComponent<ColorChanger>().Change(day);
+            if (a.GetComponentInChildren<ColorChanger>())
+            {
+                a.GetComponentInChildren<ColorChanger>().Change(day);
+            }
+        }
+    }
 }
 
 public enum PlantState

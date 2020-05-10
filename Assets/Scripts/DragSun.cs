@@ -49,6 +49,8 @@ public class DragSun : MonoBehaviour
             position = 0;
             transform.position = new Vector3(-100, -100);
             SeedStateManager.Instance.isDay = !isSun;
+            SeedStateManager.Instance.stats.ChangeColorUI();
+
         }
         else
         {

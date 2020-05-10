@@ -51,6 +51,8 @@ MonoBehaviour:
   tempFactor: 0
   tempXHit: 0.5
   numOfCloudsToBlockSun: 15
+  dayBG: {r: 1, g: 1, b: 1, a: 1}
+  nightBG: {r: 0.2627451, g: 0, b: 0.4627451, a: 1}
 --- !u!1 &8346506837533445803
 GameObject:
   m_ObjectHideFlags: 0

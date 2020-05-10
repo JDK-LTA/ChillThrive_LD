@@ -20,11 +20,13 @@ public class SunManager : MonoBehaviour
     public float tempXHit = 0.1f;
     public int numOfCloudsToBlockSun = 15;
 
+    public Color dayBG, nightBG;//new Color32(255, 255, 255, 255) : new Color32(0, 35, 128, 255);
+
     public void UpdateTempFactor()
     {
         float dayOrNight = SeedStateManager.Instance.isDay ? 1 : -1;
         dragAstro = SeedStateManager.Instance.isDay ? dragSun : dragMoon;
-        background.color = SeedStateManager.Instance.isDay ? new Color32(255, 255, 255, 255) : new Color32(0, 35, 128, 255);
+        background.color = SeedStateManager.Instance.isDay ? dayBG : nightBG;
 
         if ((float)dragAstro.position / (float)sunPath.numOfPoints < 0.05f || (float)dragAstro.position / (float)sunPath.numOfPoints > 0.95f)
         {
